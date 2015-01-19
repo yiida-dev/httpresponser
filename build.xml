@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GetEC2List" default="jar">
+    <target name="jar">
+        <jar destfile="./httpresponser.jar" basedir="./bin">
+            <manifest>
+                <attribute name="Main-Class" value="yiida.httpresponser.HttpResponser"/>
+            </manifest>
+        </jar>
+    </target>
+</project>

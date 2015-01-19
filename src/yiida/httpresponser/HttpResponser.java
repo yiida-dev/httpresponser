@@ -52,7 +52,7 @@ public class HttpResponser {
         if(portValue != null) {
             try {
                 int p = Integer.valueOf(portValue);
-                if(p > 1024 && p <= 65535) port = p;
+                if(p > 0 && p <= 65535) port = p;
             } catch(NumberFormatException e) {
                 e.printStackTrace();
             }
