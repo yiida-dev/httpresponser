@@ -92,8 +92,8 @@ public final class UserInputResponseHandler implements ResponseHandler {
         String msg = httpStatusMsg.get(response.getStatusCode());
         if(msg == null) msg = "";
         String res = "HTTP/1.1 "+ response.getStatusCode() + " " + msg + "\r\n";
-        res += "Content-Type: text/plain\r\n";
-        res += "Content-Encoding: utf-8\r\n";
+        res += "Content-Type: " + response.getMimeType() + "; charset=utf-8\r\n";
+        //res += "Content-Encoding: utf-8\r\n";
         res += "Connection: close\r\n";
         res += "\r\n";
         res += response.getBody();

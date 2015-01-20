@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.Charset;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -22,6 +23,7 @@ public class HttpResponseDialog extends JDialog implements ResultDialog<HttpResp
 
     private JTextArea textAreaReq;
     private JTextField textFieldStatus;
+    private JTextField textFieldMimeType;
     private JTextArea textAreaBody;
 
     private boolean commit;
@@ -54,6 +56,15 @@ public class HttpResponseDialog extends JDialog implements ResultDialog<HttpResp
         layout.putConstraint(SpringLayout.WEST, textFieldStatus, 5, SpringLayout.EAST, label);
         layout.putConstraint(SpringLayout.NORTH, textFieldStatus, 0, SpringLayout.NORTH, label);
         panel.add(textFieldStatus);
+        label = new JLabel("MIME Type:");
+        layout.putConstraint(SpringLayout.WEST, label, 10, SpringLayout.EAST, textFieldStatus);
+        layout.putConstraint(SpringLayout.NORTH, label, 0, SpringLayout.NORTH, textFieldStatus);
+        panel.add(label);
+        textFieldMimeType = new JTextField(10);
+        textFieldMimeType.setText("text/plain");
+        layout.putConstraint(SpringLayout.WEST, textFieldMimeType, 5, SpringLayout.EAST, label);
+        layout.putConstraint(SpringLayout.NORTH, textFieldMimeType, 0, SpringLayout.NORTH, label);
+        panel.add(textFieldMimeType);
         label = new JLabel("MessageBody:");
         layout.putConstraint(SpringLayout.WEST, label, 10, SpringLayout.WEST, panel);
         layout.putConstraint(SpringLayout.NORTH, label, 10, SpringLayout.SOUTH, textFieldStatus);
@@ -68,6 +79,7 @@ public class HttpResponseDialog extends JDialog implements ResultDialog<HttpResp
             @Override
             public void actionPerformed(ActionEvent e) {
                 result.code = textFieldStatus.getText();
+                result.mime = textFieldMimeType.getText();
                 result.body = textAreaBody.getText();
                 commit = true;
                 HttpResponseDialog.this.setVisible(false);
@@ -105,6 +117,7 @@ public class HttpResponseDialog extends JDialog implements ResultDialog<HttpResp
 
         String code;
         String body;
+        String mime;
 
         InputResult() {}
 
@@ -118,5 +131,14 @@ public class HttpResponseDialog extends JDialog implements ResultDialog<HttpResp
             return body;
         }
 
+        @Override
+        public String getMimeType() {
+            return mime;
+        }
+        
+        @Override
+        public Charset getCharset() {
+            return null;
+        }
     }
 }
