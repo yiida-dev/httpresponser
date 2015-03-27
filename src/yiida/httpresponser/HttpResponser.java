@@ -27,7 +27,7 @@ public class HttpResponser {
     TrayIcon trayIcon;
 
     private HttpResponser() {
-        server = new HttpsServer(1, 34441);
+        server = new HttpServer(1, 34441);
         server.setResponseHandler(new UserInputResponseHandler());
     }
 
