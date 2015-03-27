@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="GetEC2List" default="jar">
+<project name="httpresponser" default="jar">
     <target name="jar">
         <jar destfile="./httpresponser.jar" basedir="./bin">
             <manifest>
